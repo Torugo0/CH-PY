@@ -107,6 +107,17 @@ while opcao != 3:
                 produto_modelo = input("Modelo do celular: ")
                 defeito = input("Em uma palavra descreva o problema: ")
                 valor = float(input("Valor para a venda do residuo: R$: "))
+                print("Insira seu pix para o pagamento caso o produto seja comprado")
+                print("1- CPF")
+                print("2- Telefone")
+                print("3- E-mail")
+                pix = int(input("Qual será a chave PIX escolhida: "))
+                if pix == 1:
+                     cpf = int(input("Digite seu CPF: "))
+                elif pix == 2:
+                     telefone = int(input("Digite seu número telefone: "))
+                elif pix == 3:
+                     email = input("Digite seu E-mail: ")
                 print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento !")
                 print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
                 print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !!")
@@ -116,6 +127,17 @@ while opcao != 3:
                 produto_modelo = input("Modelo do notebook: ")
                 defeito = input("Em uma palavra descreva o problema: ")
                 valor = float(input("Valor para a venda do residuo: R$: "))
+                print("Insira seu pix para o pagamento caso o produto seja comprado")
+                print("1- CPF")
+                print("2- Telefone")
+                print("3- E-mail")
+                pix = int(input("Qual será a chave PIX escolhida: "))
+                if pix == 1:
+                     cpf = int(input("Digite seu CPF: "))
+                elif pix == 2:
+                     telefone = int(input("Digite seu número telefone: "))
+                elif pix == 3:
+                     email = input("Digite seu E-mail: ")
                 print(f"O notebook de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento !")
                 print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
                 print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !!")
@@ -125,6 +147,17 @@ while opcao != 3:
                 produto_modelo = input("Modelo do televisor: ")
                 defeito = input("Em uma palavra descreva o problema: ")
                 valor = float(input("Valor para a venda do residuo: R$: "))
+                print("Insira seu pix para o pagamento caso o produto seja comprado")
+                print("1- CPF")
+                print("2- Telefone")
+                print("3- E-mail")
+                pix = int(input("Qual será a chave PIX escolhida: "))
+                if pix == 1:
+                     cpf = int(input("Digite seu CPF: "))
+                elif pix == 2:
+                     telefone = int(input("Digite seu número telefone: "))
+                elif pix == 3:
+                     email = input("Digite seu E-mail: ")
                 print(f"O televisor de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento !")
                 print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
                 print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !!")
@@ -134,6 +167,17 @@ while opcao != 3:
                 produto_modelo = input("Modelo do periferico: ")
                 defeito = input("Em uma palavra descreva o problema: ")
                 valor = float(input("Valor para a venda do residuo: R$: "))
+                print("Insira seu pix para o pagamento caso o produto seja comprado")
+                print("1- CPF")
+                print("2- Telefone")
+                print("3- E-mail")
+                pix = int(input("Qual será a chave PIX escolhida: "))
+                if pix == 1:
+                     cpf = int(input("Digite seu CPF: "))
+                elif pix == 2:
+                     telefone = int(input("Digite seu número telefone: "))
+                elif pix == 3:
+                     email = input("Digite seu E-mail: ")
                 print(f"O periferico de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento !")
                 print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
                 print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !!")
