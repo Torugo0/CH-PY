@@ -1,1 +1,0 @@
-produto = input("Marca \n(Apple, Samsung, Xiaomi, etc):")
