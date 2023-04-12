@@ -1,4 +1,4 @@
-print(" BEM-VINDO !!! ")
+print(" BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! ")
 
 nome = input("Digite seu nome: ")
 cpf = int(input(f"Olá {nome}, digite seu CPF: "))
