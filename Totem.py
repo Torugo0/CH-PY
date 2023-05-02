@@ -9,14 +9,15 @@ opcao = 0
 while opcao != 3:
 
     print("1 - Ver Produtos")
-    print("2 - Depositar Produto(s)")
-    print("3 - Sair")
+    print("2 - Depositar Produto(s)") # Quando a pessoa fazer o deposito do produto, fazer exibir na opção de VER PRODUTOS. 
+    print("3 - Sair")  # Fazer uma função para que o usuario decida se quer continuar no programa ou encerra-lo 
 
     opcao = int(input("Escolha a opção desejada: "))
+    #Juntar tudo que está nas linhas anteriores de codigo em uma função menu
 
         
     match opcao:
-        case 1:
+        case 1: # Criar uma função para armazenar os produtos 
             print("Produtos")
             print("1 - Iphone 6s com bateria inchada - R$: 800,00")
             print("2 - Carcaça Notebook Lenovo - R$: 300,00")
