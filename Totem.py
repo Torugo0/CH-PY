@@ -1,6 +1,3 @@
-#def menu():
-     
-
 def produtos():
 
     print("Produtos")
@@ -79,7 +76,9 @@ def produtos():
                 print("Operação cancelada\n")
     elif opcao_produto == 6:
         print("Sessão finalizada \n")
-# Ver o negocio caso digitem strings (IF compra true, else print (digite um ou dois))
+# Ajustar que caso o usuario digite strings (IF compra true (Executa os outros ifs), else print (digite um para o desejo de comprar ou dois para não comprar)
+# Provavel que crie um array de produto, preço e defeito, e selecione a posição e faça um resumo do que o usuario comprou.
+
 def descarte():
 
     print("Qual o tipo de produto que deseja descartar ? \n")
@@ -115,29 +114,13 @@ def descarte():
                 email = input("Digite seu E-mail: ")
         print("\n")
 
-        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-        print("1- CPF")
-        print("2- Telefone")
-        print("3- E-mail \n")
-
-        pix = int(input("Qual será a chave PIX escolhida: "))
-        print("\n")
-
-        if pix == 1:
-                cpf = int(input("Digite seu CPF: "))
-        elif pix == 2:
-                telefone = int(input("Digite seu número telefone: "))
-        elif pix == 3:
-                email = input("Digite seu E-mail: ")
-        print("\n")
-
-        print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n") 
         print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
         print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
     
     elif opcao_descarte == 2:
         produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-        produto_modelo = input("Modelo do celular: ")
+        produto_modelo = input("Modelo do notebook: ")
         defeito = input("Em uma palavra descreva o problema: ")
         valor = float(input("Valor para a venda do residuo: R$: "))
         print("\n")
@@ -157,49 +140,17 @@ def descarte():
         elif pix == 3:
                 email = input("Digite seu E-mail: ")
         print("\n")
-
-        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-        print("1- CPF")
-        print("2- Telefone")
-        print("3- E-mail \n")
-
-        pix = int(input("Qual será a chave PIX escolhida: "))
-        print("\n")
-
-        if pix == 1:
-                cpf = int(input("Digite seu CPF: "))
-        elif pix == 2:
-                telefone = int(input("Digite seu número telefone: "))
-        elif pix == 3:
-                email = input("Digite seu E-mail: ")
-        print("\n")
         
-        print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print(f"O notebook de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
         print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
         print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
     
     elif opcao_descarte == 3:
         produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-        produto_modelo = input("Modelo do celular: ")
+        produto_modelo = input("Modelo do televisor: ")
         defeito = input("Em uma palavra descreva o problema: ")
         valor = float(input("Valor para a venda do residuo: R$: "))
         print("\n")
-        
-        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-        print("1- CPF")
-        print("2- Telefone")
-        print("3- E-mail \n")
-
-        pix = int(input("Qual será a chave PIX escolhida: "))
-        print("\n")
-
-        if pix == 1:
-                cpf = int(input("Digite seu CPF: "))
-        elif pix == 2:
-                telefone = int(input("Digite seu número telefone: "))
-        elif pix == 3:
-                email = input("Digite seu E-mail: ")
-        print("\n")
 
         print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
         print("1- CPF")
@@ -217,32 +168,16 @@ def descarte():
                 email = input("Digite seu E-mail: ")
         print("\n")
         
-        print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print(f"O televisor de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
         print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
         print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
     
     elif opcao_descarte == 4:
         produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-        produto_modelo = input("Modelo do celular: ")
+        produto_modelo = input("Modelo do periferico: ")
         defeito = input("Em uma palavra descreva o problema: ")
         valor = float(input("Valor para a venda do residuo: R$: "))
         print("\n")
-        
-        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-        print("1- CPF")
-        print("2- Telefone")
-        print("3- E-mail \n")
-
-        pix = int(input("Qual será a chave PIX escolhida: "))
-        print("\n")
-
-        if pix == 1:
-                cpf = int(input("Digite seu CPF: "))
-        elif pix == 2:
-                telefone = int(input("Digite seu número telefone: "))
-        elif pix == 3:
-                email = input("Digite seu E-mail: ")
-        print("\n")
 
         print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
         print("1- CPF")
@@ -260,37 +195,45 @@ def descarte():
                 email = input("Digite seu E-mail: ")
         print("\n")
         
-        print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print(f"O periferico de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
         print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
         print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
-# Colocar os nomes em ordem: celulares, notebooks....
 
-print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
+def menu():
 
-print("Informe seus dados")
-nome = input("Digite seu nome: ")
-cpf = int(input(f"Olá {nome}, digite seu CPF: "))
-telefone = int(input("Número para contato: "))
-print("\n")
-# Menu de dados
+    print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
 
-opcao = 0
-
-while opcao != 3:
-
-# Menu, e ver se da pra colocar o while na funcção 
-
-    print("1 - Ver Produtos")
-    print("2 - Depositar Produto(s)") # Quando a pessoa fazer o deposito do produto, fazer exibir na opção de VER PRODUTOS. 
-    print("3 - Sair \n")  # Fazer uma função para que o usuario decida se quer continuar no programa ou encerra-lo 
-
-    opcao = int(input("Escolha a opção desejada: "))
+    print("Informe seus dados")
+    nome = input("Digite seu nome: ")
+    cpf = int(input(f"Olá {nome}, digite seu CPF: "))
+    telefone = int(input("Número para contato: "))
     print("\n")
-    #Juntar tudo que está nas linhas anteriores de codigo em uma função menu
 
-    match opcao:
-        case 1: # Criar uma função para armazenar os produtos 
-            produtos()
-        
-        case 2:
-            descarte()
+    opcao = 0
+    while opcao != 3:
+
+        print("1 - Ver Produtos")
+        print("2 - Depositar Produto(s)")
+        print("3 - Sair \n")
+
+        opcao = int(input("Escolha a opção desejada: "))
+        print("\n")
+
+        match opcao:
+                case 1: 
+                    produtos()
+                
+                case 2:
+                    descarte()
+                case 3:
+                    print("ElekSell agradece a sua vinda, muito obrigado !")
+# Quando a pessoa fazer o deposito do produto, exibir na opção de VER PRODUTOS. 
+# Fazer uma função para que o usuario decida se quer continuar no programa ou encerra-lo, se possivel quando o usuario fazer a compra do produto ou digitar que não quer efetuar a compra 
+
+menu()
+
+# Armazenamento de dados em variáveis, estruturas condicionais e de repetição, definição de funções (Ver se é necessário a passagem de parâmetros e retorno)
+
+# Armazenar inputs do usuário e guardá-los em variáveis e saber realizar buscas e comparações entre elementos
+
+# Listar o resumo da operação realizada, permitindo ao usuário realizar uma nova operação ou encerrar o programa (Ver se o resumo feito na hora de descarte do produto conta)
