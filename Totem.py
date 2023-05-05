@@ -1,4 +1,5 @@
-def produtos():
+# Menus
+def menuproduto():
 
     print("Produtos")
     print("1 - Iphone 6s com bateria inchada - R$: 800,00")
@@ -9,7 +10,32 @@ def produtos():
     print("6 - Sair \n")
     
     opcao_produto = int(input("Escolha um produto/opção: "))
+    return opcao_produto
+
+def menudescarte():
+    print("Qual o tipo de produto que deseja descartar ? \n")
+    print("1- Celulares")
+    print("2- Notebooks")
+    print("3- Televisores (Máximo de 20' polegadas)")
+    print("4- Perifericos")
+    print("5- Pilhas \n")
+
+    opcao_descarte = int(input("Digite a opção desejada: "))
+    return opcao_descarte
+
+def menume():
+    print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
+
+    print("Informe seus dados")
+    nome = input("Digite seu nome: ")
+    cpf = int(input(f"Olá {nome}, digite seu CPF: "))
+    telefone = int(input("Número para contato: "))
     print("\n")
+
+    opcao = 0
+    return opcao
+
+def comprarproduto(opcao_produto):
     if opcao_produto == 1:
         print("Iphone 6s com bateria inchada")
         print("Valor: R$: 800,00")
@@ -34,7 +60,7 @@ def produtos():
             print("Escaneie o QR CODE para o pagamento via PIX")
             print("Obrigado por comprar conosco !! \n")
         else:
-                print("Operação cancelada \n")
+            print("Operação cancelada \n")
     
     elif opcao_produto == 3:
         print("Monitor 20' sem imagem")
@@ -47,7 +73,7 @@ def produtos():
             print("Escaneie o QR CODE para o pagamento via PIX")
             print("Obrigado por comprar conosco !! \n")
         else:
-                print("Operação cancelada \n")
+            print("Operação cancelada \n")
     
     elif opcao_produto == 4:
         print("Samsung Note 20 placa queimada")
@@ -60,7 +86,7 @@ def produtos():
             print("Escaneie o QR CODE para o pagamento via PIX")
             print("Obrigado por comprar conosco !!\n")
         else:
-                print("Operação cancelada\n")
+            print("Operação cancelada\n")
     
     elif opcao_produto == 5:
         print("Luminária queimada")
@@ -73,22 +99,23 @@ def produtos():
             print("Escaneie o QR CODE para o pagamento via PIX")
             print("Obrigado por comprar conosco !!\n")
         else:
-                print("Operação cancelada\n")
+            print("Operação cancelada\n")
     elif opcao_produto == 6:
         print("Sessão finalizada \n")
+
+def produtos():
+    opcao_produto = menuproduto()
+    # fazer uma def para cada produto
+    print("\n")
+
+    comprarproduto(opcao_produto)
+
 # Ajustar que caso o usuario digite strings (IF compra true (Executa os outros ifs), else print (digite um para o desejo de comprar ou dois para não comprar)
 # Provavel que crie um array de produto, preço e defeito, e selecione a posição e faça um resumo do que o usuario comprou.
+# Estrutura de repetição para comprar mais produtos 
 
 def descarte():
-
-    print("Qual o tipo de produto que deseja descartar ? \n")
-    print("1- Celulares")
-    print("2- Notebooks")
-    print("3- Televisores (Máximo de 20' polegadas)")
-    print("4- Perifericos")
-    print("5- Pilhas \n")
-
-    opcao_descarte = int(input("Digite a opção desejada: "))
+    opcao_descarte = menudescarte()
     print("\n")
 
     if opcao_descarte == 1:
@@ -198,20 +225,12 @@ def descarte():
         print(f"O periferico de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
         print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
         print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+# Quando a pessoa fazer o deposito do produto, exibir na opção de VER PRODUTOS. 
 
 def menu():
-
-    print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
-
-    print("Informe seus dados")
-    nome = input("Digite seu nome: ")
-    cpf = int(input(f"Olá {nome}, digite seu CPF: "))
-    telefone = int(input("Número para contato: "))
-    print("\n")
-
-    opcao = 0
+    opcao = menume()
+    
     while opcao != 3:
-
         print("1 - Ver Produtos")
         print("2 - Depositar Produto(s)")
         print("3 - Sair \n")
@@ -227,7 +246,6 @@ def menu():
                     descarte()
                 case 3:
                     print("ElekSell agradece a sua vinda, muito obrigado !")
-# Quando a pessoa fazer o deposito do produto, exibir na opção de VER PRODUTOS. 
 # Fazer uma função para que o usuario decida se quer continuar no programa ou encerra-lo, se possivel quando o usuario fazer a compra do produto ou digitar que não quer efetuar a compra 
 
 menu()
