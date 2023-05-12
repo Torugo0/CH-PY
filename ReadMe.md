@@ -23,3 +23,6 @@ Ao iniciar o programa, o usuário é solicitado a digitar seu nome, CPF e númer
 - Sair: encerra o programa.
 
 O programa continuará em um loop até que o usuário escolha a opção "Sair".
+
+## ATUALIZÇÕES DO TOTEM PARA A SEGUNDA SPRINT
+
