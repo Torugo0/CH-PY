@@ -111,8 +111,7 @@ def produtos():
     comprarproduto(opcao_produto)
 
 # Ajustar que caso o usuario digite strings (IF compra true (Executa os outros ifs), else print (digite um para o desejo de comprar ou dois para não comprar)
-# Provavel que crie um array de produto, preço e defeito, e selecione a posição e faça um resumo do que o usuario comprou.
-# Estrutura de repetição para comprar mais produtos 
+ 
 
 def descarte():
     opcao_descarte = menudescarte()
