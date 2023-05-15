@@ -31,8 +31,8 @@ def menuproduto():
 # Com o while, entra em loop o comprar e não volta ao inicio
 
 def produto1():
-    roda = True
-    while roda:
+    volta = True
+    while volta:
         try:
             print("Iphone 6s com bateria inchada")
             print("Valor: R$: 800,00")
@@ -45,95 +45,108 @@ def produto1():
             if comprar == 1:
                 print("Escaneie o QR CODE para o pagamento via PIX")
                 print("Obrigado por comprar conosco !! \n")
-                roda = False
+                volta = False
             else:
                 print("Operação cancelada \n")
-                roda = False
+                volta = False
         except VerificaError:
                 print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
             print("O valor informado não é um número \n")
             
-
-def produto2(opcao_produto):
-  
-    if opcao_produto == 2:
-        print("Carcaça Notebook Lenovo")
-        print("Valor: R$: 300,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não)")
-
-        comprar = int(input("Comprar: "))
-        if comprar <= 0 or comprar > 2:
-            raise VerificaError
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !! \n")
-        else:
-            print("Operação cancelada \n")
-
-def produto3(opcao_produto):
-    while True:
+def produto2():
+    volta = True
+    while volta:
         try:
-            if opcao_produto == 3:
-                print("Monitor 20' sem imagem")
-                print("Valor: R$: 100,00")
-                print("Deseja comprar o produto? (1- Sim // 2- Não)")
+            print("Carcaça Notebook Lenovo")
+            print("Valor: R$: 300,00")
+            print("Deseja comprar o produto? (1- Sim // 2- Não)")
 
-                comprar = int(input("Comprar: "))
-                if comprar <= 0 or comprar > 2:
-                    raise VerificaError
-                
-                if comprar == 1:
-                    print("Escaneie o QR CODE para o pagamento via PIX")
-                    print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM MONITOR DE 20'")
-                    print("Obrigado por comprar conosco !! \n")
-                else:
-                    print("Operação cancelada \n")
-        except VerificaError:
-            print("Digite apenas as opções exibidas em tela \n")
-        except ValueError:
-            print("O valor informado não é um número \n")
-    
-def produto4(opcao_produto):
-    while True:
-        try:
-            if opcao_produto == 4:
-                print("Samsung Note 20 placa queimada")
-                print("Valor: R$: 500,00")
-                print("Deseja comprar o produto? (1- Sim // 2- Não)")
-
-                comprar = int(input("Comprar: "))
-                if comprar <= 0 or comprar > 2:
-                    raise VerificaError
-                
-                if comprar == 1:
-                    print("Escaneie o QR CODE para o pagamento via PIX")
-                    print("Obrigado por comprar conosco !!\n")
-                else:
-                    print("Operação cancelada\n")
+            comprar = int(input("Comprar: "))
+            if comprar <= 0 or comprar > 2:
+                raise VerificaError
+            
+            if comprar == 1:
+                print("Escaneie o QR CODE para o pagamento via PIX")
+                print("Obrigado por comprar conosco !! \n")
+                volta = False
+            else:
+                print("Operação cancelada \n")
+                volta = False
         except VerificaError:
                 print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
             print("O valor informado não é um número \n")
 
-def produto5(opcao_produto):
-    while True:
+def produto3():
+    volta = True
+    while volta:
         try:
-            if opcao_produto == 5:
-                print("Luminária queimada")
-                print("Valor: R$: 20,00")
-                print("Deseja comprar o produto? (1- Sim // 2- Não)")
+            print("Monitor 20' sem imagem")
+            print("Valor: R$: 100,00")
+            print("Deseja comprar o produto? (1- Sim // 2- Não)")
 
-                comprar = int(input("Comprar: "))
-                if comprar <= 0 or comprar > 2:
-                            raise VerificaError
-                
-                if comprar == 1:
-                    print("Escaneie o QR CODE para o pagamento via PIX")
-                    print("Obrigado por comprar conosco !!\n")
-                else:
-                    print("Operação cancelada\n")
+            comprar = int(input("Comprar: "))
+            if comprar <= 0 or comprar > 2:
+                raise VerificaError
+            
+            if comprar == 1:
+                print("Escaneie o QR CODE para o pagamento via PIX")
+                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM MONITOR DE 20'")
+                print("Obrigado por comprar conosco !! \n")
+                volta = False
+            else:
+                print("Operação cancelada \n")
+                volta = False
+        except VerificaError:
+            print("Digite apenas as opções exibidas em tela \n")
+        except ValueError:
+            print("O valor informado não é um número \n")
+    
+def produto4():
+    volta = True
+    while volta:
+        try:
+            print("Samsung Note 20 placa queimada")
+            print("Valor: R$: 500,00")
+            print("Deseja comprar o produto? (1- Sim // 2- Não)")
+
+            comprar = int(input("Comprar: "))
+            if comprar <= 0 or comprar > 2:
+                raise VerificaError
+            
+            if comprar == 1:
+                print("Escaneie o QR CODE para o pagamento via PIX")
+                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM SAMSUNG NOTE 20")
+                print("Obrigado por comprar conosco !!\n")
+                volta = False
+            else:
+                print("Operação cancelada\n")
+                volta = False
+        except VerificaError:
+                print("Digite apenas as opções exibidas em tela \n")
+        except ValueError:
+            print("O valor informado não é um número \n")
+
+def produto5():
+    volta = True
+    while volta:
+        try:
+            print("Luminária queimada")
+            print("Valor: R$: 20,00")
+            print("Deseja comprar o produto? (1- Sim // 2- Não)")
+
+            comprar = int(input("Comprar: "))
+            if comprar <= 0 or comprar > 2:
+                        raise VerificaError
+            
+            if comprar == 1:
+                print("Escaneie o QR CODE para o pagamento via PIX")
+                print("Obrigado por comprar conosco !!\n")
+                volta = False
+            else:
+                print("Operação cancelada\n")
+                volta = False
         except VerificaError:
                     print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
@@ -144,78 +157,13 @@ def comprarproduto(opcao_produto):
         case 1:
             produto1()
         case 2:
-            produto2(opcao_produto)
+            produto2()
         case 3:
-            produto3(opcao_produto)
+            produto3()
         case 4:
-            produto4(opcao_produto)
+            produto4()
         case 5:
-            produto5(opcao_produto)
-    
-'''
-def comprarproduto(opcao_produto):
-    if opcao_produto == 1:
-        print("Iphone 6s com bateria inchada")
-        print("Valor: R$: 800,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não) \n")
-        comprar = int(input("Comprar: "))
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !! \n")
-        else:
-            print("Operação cancelada \n")
-    
-    elif opcao_produto == 2:
-        print("Carcaça Notebook Lenovo")
-        print("Valor: R$: 300,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não)")
-        comprar = int(input("Comprar: "))
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !! \n")
-        else:
-            print("Operação cancelada \n")
-
-    elif opcao_produto == 3:
-        print("Monitor 20' sem imagem")
-        print("Valor: R$: 100,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não)")
-        comprar = int(input("Comprar: "))
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !! \n")
-        else:
-            print("Operação cancelada \n")
-
-    elif opcao_produto == 4:
-        print("Samsung Note 20 placa queimada")
-        print("Valor: R$: 500,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não)")
-        comprar = int(input("Comprar: "))
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !!\n")
-        else:
-            print("Operação cancelada\n")
-
-    elif opcao_produto == 5:
-        print("Luminária queimada")
-        print("Valor: R$: 20,00")
-        print("Deseja comprar o produto? (1- Sim // 2- Não)")
-        comprar = int(input("Comprar: "))
-        
-        if comprar == 1:
-            print("Escaneie o QR CODE para o pagamento via PIX")
-            print("Obrigado por comprar conosco !!\n")
-        else:
-            print("Operação cancelada\n")
-    elif opcao_produto == 6:
-        print("Sessão finalizada \n")
-'''
+            produto5()
 
 def produtos():
     opcao_produto = menuproduto()
@@ -228,7 +176,7 @@ def produtos():
 # Sem o while true ele para
 # Com o while true ele entra em loop
 def menudescarte():
-    
+    while True:
         try:
             print("Qual o tipo de produto que deseja descartar ? \n")
             print("1- Celulares")
@@ -246,120 +194,152 @@ def menudescarte():
             print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
             print("O valor informado não é um número \n")
+
+def pix():
+    roda = True
+    while roda:
+        try:
+            print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
+            print("1- CPF")
+            print("2- Telefone")
+            print("3- E-mail \n")
+
+            pix = int(input("Qual será a chave PIX escolhida: "))
+            if pix <= 0 or pix > 3:
+                raise VerificaError
+            print("\n")
+            
+            if pix == 1:
+                cpf = int(input("Digite seu CPF: "))
+                digitos= len(str(cpf))
+                if digitos < 11 or digitos > 11:
+                    raise CpfError
+                roda = False
+            elif pix == 2:
+                numero()
+                roda = False
+            elif pix == 3:
+                email = input("Digite seu E-mail: ")
+                roda = False
+            print("\n")
+        except VerificaError:
+            print("Digite apenas as opções exibidas em tela \n")
+        except ValueError:
+            print("O valor informado não é um número \n")
+        except TelefoneError:
+            print("O telefone informado não é válida. \nExemplo: 11912345678 \n")
+
+def celulares():
+    produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+    produto_modelo = input("Modelo do celular: ")
+    defeito = input("Em uma palavra descreva o problema: ")
+    valor = float(input("Valor para a venda do residuo: R$: "))
+    print("\n")
     
+    pix()
+
+    print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n") 
+    print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
+    print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+        
+# Terminar as def's de cada produto de descarte
+def cadescarte(opcao_descarte):
+    match opcao_descarte:
+        case 1:
+            celulares()
+    
+    '''
+    if opcao_descarte == 2:
+        produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+        produto_modelo = input("Modelo do notebook: ")
+        defeito = input("Em uma palavra descreva o problema: ")
+        valor = float(input("Valor para a venda do residuo: R$: "))
+        print("\n")
+        
+        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
+        print("1- CPF")
+        print("2- Telefone")
+        print("3- E-mail \n")
+
+        pix = int(input("Qual será a chave PIX escolhida: "))
+        print("\n")
+
+        if pix == 1:
+                cpf = int(input("Digite seu CPF: "))
+        elif pix == 2:
+                telefone = int(input("Digite seu número telefone: "))
+        elif pix == 3:
+                email = input("Digite seu E-mail: ")
+        print("\n")
+        
+        print(f"O notebook de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
+        print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+    
+    elif opcao_descarte == 3:
+        produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+        produto_modelo = input("Modelo do televisor: ")
+        defeito = input("Em uma palavra descreva o problema: ")
+        valor = float(input("Valor para a venda do residuo: R$: "))
+        print("\n")
+
+        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
+        print("1- CPF")
+        print("2- Telefone")
+        print("3- E-mail \n")
+
+        pix = int(input("Qual será a chave PIX escolhida: "))
+        print("\n")
+
+        if pix == 1:
+                cpf = int(input("Digite seu CPF: "))
+        elif pix == 2:
+                telefone = int(input("Digite seu número telefone: "))
+        elif pix == 3:
+                email = input("Digite seu E-mail: ")
+        print("\n")
+        
+        print(f"O televisor de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
+        print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+    
+    elif opcao_descarte == 4:
+        produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+        produto_modelo = input("Modelo do periferico: ")
+        defeito = input("Em uma palavra descreva o problema: ")
+        valor = float(input("Valor para a venda do residuo: R$: "))
+        print("\n")
+
+        print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
+        print("1- CPF")
+        print("2- Telefone")
+        print("3- E-mail \n")
+
+        pix = int(input("Qual será a chave PIX escolhida: "))
+        print("\n")
+
+        if pix == 1:
+                cpf = int(input("Digite seu CPF: "))
+        elif pix == 2:
+                telefone = int(input("Digite seu número telefone: "))
+        elif pix == 3:
+                email = input("Digite seu E-mail: ")
+        print("\n")
+        
+        print(f"O periferico de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
+        print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
+        print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+
+    elif opcao_descarte == 5:
+        print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !!")
+'''
 
 def descarte():
     opcao_descarte = menudescarte()
     print("\n")
 
-    while opcao_descarte != 6:
-        if opcao_descarte == 1:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do celular: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-            
-            print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-            print("1- CPF")
-            print("2- Telefone")
-            print("3- E-mail \n")
+    cadescarte(opcao_descarte)
 
-            pix = int(input("Qual será a chave PIX escolhida: "))
-            print("\n")
-
-            if pix == 1:
-                    cpf = int(input("Digite seu CPF: "))
-            elif pix == 2:
-                    telefone = int(input("Digite seu número telefone: "))
-            elif pix == 3:
-                    email = input("Digite seu E-mail: ")
-            print("\n")
-
-            print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n") 
-            print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
-            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
-        
-        elif opcao_descarte == 2:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do notebook: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-            
-            print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-            print("1- CPF")
-            print("2- Telefone")
-            print("3- E-mail \n")
-
-            pix = int(input("Qual será a chave PIX escolhida: "))
-            print("\n")
-
-            if pix == 1:
-                    cpf = int(input("Digite seu CPF: "))
-            elif pix == 2:
-                    telefone = int(input("Digite seu número telefone: "))
-            elif pix == 3:
-                    email = input("Digite seu E-mail: ")
-            print("\n")
-            
-            print(f"O notebook de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
-            print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
-            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
-        
-        elif opcao_descarte == 3:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do televisor: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-
-            print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-            print("1- CPF")
-            print("2- Telefone")
-            print("3- E-mail \n")
-
-            pix = int(input("Qual será a chave PIX escolhida: "))
-            print("\n")
-
-            if pix == 1:
-                    cpf = int(input("Digite seu CPF: "))
-            elif pix == 2:
-                    telefone = int(input("Digite seu número telefone: "))
-            elif pix == 3:
-                    email = input("Digite seu E-mail: ")
-            print("\n")
-            
-            print(f"O televisor de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
-            print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
-            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
-        
-        elif opcao_descarte == 4:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do periferico: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-
-            print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
-            print("1- CPF")
-            print("2- Telefone")
-            print("3- E-mail \n")
-
-            pix = int(input("Qual será a chave PIX escolhida: "))
-            print("\n")
-
-            if pix == 1:
-                    cpf = int(input("Digite seu CPF: "))
-            elif pix == 2:
-                    telefone = int(input("Digite seu número telefone: "))
-            elif pix == 3:
-                    email = input("Digite seu E-mail: ")
-            print("\n")
-            
-            print(f"O periferico de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento ! \n")
-            print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
-            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
 
 #Contato & CPF
 def cpf(nome):
