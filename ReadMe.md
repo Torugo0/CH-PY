@@ -24,5 +24,15 @@ Ao iniciar o programa, o usuário é solicitado a digitar seu nome, CPF e númer
 
 O programa continuará em um loop até que o usuário escolha a opção "Sair".
 
-## ATUALIZÇÕES DO TOTEM PARA A SEGUNDA SPRINT
+## ATUALIZÇÕES DO TOTEM DA SEGUNDA SPRINT - 21/05/2023
+Nesta sprint foram feitas poucas modificações ao usuário, e mais focada a quem for trabalhar futuramente neste programa, as modificações foram as seguintes:
+### Usuário
+- Mensagem dizendo ao usuário que após ele ter escaniado o QR CODE que sua transação foi aceita e informando a ele o resíduo que foi adquirido.
+- Na parte do descarte foi mantido o resumo do produto que está sendo descartado e o informe da disponibilidade do produto no ponto.
+- Mensagens de aviso caso digite alguma informação invalida em algum campo de input.
+### Desenvolvedor 
+- Código dividido em funções, facilitando a visualização e o entendimento dele.
+- Foi acrescentado também o tratamento de erros, para que o programa não pare caso o usuário digite alguma informação invalida em aglum input. 
+
+
 
