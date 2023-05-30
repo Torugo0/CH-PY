@@ -262,6 +262,7 @@ def notebooks():
 
             pagamento()
             aviso(produto_marca, produto_modelo, defeito, valor)
+            roda = False
         except ValueError:
             print("O valor informado não é um número \n")
 
@@ -277,6 +278,7 @@ def televisores():
 
             pagamento()
             aviso(produto_marca, produto_modelo, defeito, valor)
+            roda = False
         except ValueError:
             print("O valor informado não é um número \n")
 
@@ -292,6 +294,7 @@ def perifericos():
 
             pagamento()
             aviso(produto_marca, produto_modelo, defeito, valor)
+            roda = False
         except ValueError:
             print("O valor informado não é um número \n")
 
@@ -377,5 +380,3 @@ def menu():
                 print("Digite apenas as opções exibidas em tela \n")
 
 menu()
-
-
