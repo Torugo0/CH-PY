@@ -7,19 +7,26 @@ class VerificaError(Exception):
      pass
 
 #PRODUTOS 
+def produtos1():
+    produtos = {
+        1 : "Iphone 6s com bateria inchada - R$: 800,00",
+        2 : "Carcaça Notebook Lenovo - R$: 300,00",
+        3 : "Monitor 20' sem imagem - R$: 100,00",
+        4 : "Samsung Note 20 placa queimada - R$: 500,00",
+        5 : "Luminária queimada - R$: 20,00",
+    }
+    return produtos
+
 def menuproduto():
     while True:
         try:
             print("Produtos")
-            print("1 - Iphone 6s com bateria inchada - R$: 800,00")
-            print("2 - Carcaça Notebook Lenovo - R$: 300,00")
-            print("3 - Monitor 20' sem imagem - R$: 100,00")
-            print("4 - Samsung Note 20 placa queimada - R$: 500,00")
-            print("5 - Luminária queimada - R$: 20,00")
-            print("6 - Voltar \n")
+            for opcao,produto in produtos1().items():
+                print(f"{opcao}- {produto}")
             
-            opcao_produto = int(input("Escolha um produto/opção: "))
-            if opcao_produto <= 0 or opcao_produto > 6:
+            print("\n")
+            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos1())+1} - voltar): "))
+            if opcao_produto <= 0 or opcao_produto > (len(produtos1())+1):
                     raise VerificaError
             return opcao_produto
         except ValueError:
@@ -27,149 +34,39 @@ def menuproduto():
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
 
-def produto1():
-    volta = True
-    while volta:
+def escolha_produto():
+    produtos_dict = produtos1()
+    produto_escolhido = menuproduto()
+    roda = True
+    while roda:
         try:
-            print("Iphone 6s com bateria inchada")
-            print("Valor: R$: 800,00")
-            print("Deseja comprar o produto? \n(1- SIM // 2- NÃO) \n")
-
-            comprar = int(input("Comprar: "))
-            if comprar <= 0 or comprar > 2:
-                raise VerificaError
-            
-            if comprar == 1:
-                print("Escaneie o QR CODE para o pagamento via PIX")
-                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM IPHONE 6S, BATERIA INCHADA")
-                print("Obrigado por comprar conosco !! \n")
-                volta = False
+            if produto_escolhido == (len(produtos_dict)+1):
+                print("\n")
+                roda = False
             else:
-                print("Operação cancelada \n")
-                volta = False
-        except VerificaError:
-                print("Digite apenas as opções exibidas em tela \n")
-        except ValueError:
-            print("O valor informado não é um número \n")
-            
-def produto2():
-    volta = True
-    while volta:
-        try:
-            print("Carcaça Notebook Lenovo")
-            print("Valor: R$: 300,00")
-            print("Deseja comprar o produto? (1- Sim // 2- Não)")
+                if produto_escolhido in produtos_dict:
+                    nome_produto = produtos_dict[produto_escolhido].split(" - ")[0].upper()
+                
+                    print(f'''{produtos_dict[produto_escolhido]}
+- Deseja comprar o produto?
+(1- SIM // 2- NÃO)
+''')
+                    comprar = int(input("Comprar: "))
+                    if comprar <= 0 or comprar > 2:
+                            raise VerificaError
 
-            comprar = int(input("Comprar: "))
-            if comprar <= 0 or comprar > 2:
-                raise VerificaError
-            
-            if comprar == 1:
-                print("Escaneie o QR CODE para o pagamento via PIX")
-                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UMA CARCAÇA DE NOTEBOOK LENOVO")
-                print("Obrigado por comprar conosco !! \n")
-                volta = False
-            else:
-                print("Operação cancelada \n")
-                volta = False
-        except VerificaError:
-                print("Digite apenas as opções exibidas em tela \n")
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def produto3():
-    volta = True
-    while volta:
-        try:
-            print("Monitor 20' sem imagem")
-            print("Valor: R$: 100,00")
-            print("Deseja comprar o produto? (1- Sim // 2- Não)")
-
-            comprar = int(input("Comprar: "))
-            if comprar <= 0 or comprar > 2:
-                raise VerificaError
-            
-            if comprar == 1:
-                print("Escaneie o QR CODE para o pagamento via PIX")
-                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM MONITOR DE 20' SEM IMAGEM")
-                print("Obrigado por comprar conosco !! \n")
-                volta = False
-            else:
-                print("Operação cancelada \n")
-                volta = False
+                    if comprar == 1:
+                            print("Escaneie o QR CODE para o pagamento via PIX")
+                            print(f"TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM(a) {nome_produto}")
+                            print("Obrigado por comprar conosco !! \n")
+                            roda = False
+                    else:
+                            print("Operação cancelada \n")
+                            roda = False
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
             print("O valor informado não é um número \n")
-    
-def produto4():
-    volta = True
-    while volta:
-        try:
-            print("Samsung Note 20 placa queimada")
-            print("Valor: R$: 500,00")
-            print("Deseja comprar o produto? (1- Sim // 2- Não)")
-
-            comprar = int(input("Comprar: "))
-            if comprar <= 0 or comprar > 2:
-                raise VerificaError
-            
-            if comprar == 1:
-                print("Escaneie o QR CODE para o pagamento via PIX")
-                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM SAMSUNG NOTE 20, PLACA QUEIMADA")
-                print("Obrigado por comprar conosco !!\n")
-                volta = False
-            else:
-                print("Operação cancelada\n")
-                volta = False
-        except VerificaError:
-                print("Digite apenas as opções exibidas em tela \n")
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def produto5():
-    volta = True
-    while volta:
-        try:
-            print("Luminária queimada")
-            print("Valor: R$: 20,00")
-            print("Deseja comprar o produto? (1- Sim // 2- Não)")
-
-            comprar = int(input("Comprar: "))
-            if comprar <= 0 or comprar > 2:
-                        raise VerificaError
-            
-            if comprar == 1:
-                print("Escaneie o QR CODE para o pagamento via PIX")
-                print("TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UMA LUMINÁRIA QUEIMADA")
-                print("Obrigado por comprar conosco !!\n")
-                volta = False
-            else:
-                print("Operação cancelada\n")
-                volta = False
-        except VerificaError:
-                    print("Digite apenas as opções exibidas em tela \n")
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def comprarproduto(opcao_produto):
-    match opcao_produto:
-        case 1:
-            produto1()
-        case 2:
-            produto2()
-        case 3:
-            produto3()
-        case 4:
-            produto4()
-        case 5:
-            produto5()
-
-def produtos():
-    opcao_produto = menuproduto()
-    print("\n")
-
-    comprarproduto(opcao_produto)
 
 #DESCARTE 
 
@@ -318,9 +215,14 @@ def descarte():
     cadescarte(opcao_descarte)
 
 #Contato & CPF
+def formatar_cpf(cpf):
+    cpf_formatado = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
+    return cpf_formatado
+
+
 def cpf(nome):
-    cpf = int(input(f"Olá {nome}, digite seu CPF: "))
-    digitos= len(str(cpf))
+    cpf = input(f"Olá {nome}, digite seu CPF: ")
+    digitos= len(cpf)
     if digitos < 11 or digitos > 11:
         raise CpfError
 
@@ -368,7 +270,7 @@ def menu():
 
                 match opcao:
                         case 1: 
-                            produtos()
+                            escolha_produto()
                         case 2:
                             descarte()
                         case 3:
