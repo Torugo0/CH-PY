@@ -9,26 +9,51 @@ class VerificaError(Exception):
 #PRODUTOS 
 def produtos1():
     produtos = {
-        1 : "Iphone 6s com bateria inchada - R$: 800,00",
-        2 : "Carcaça Notebook Lenovo - R$: 300,00",
-        3 : "Monitor 20' sem imagem - R$: 100,00",
-        4 : "Samsung Note 20 placa queimada - R$: 500,00",
-        5 : "Luminária queimada - R$: 20,00",
+        1 : ["Iphone 6s com bateria inchada - R$: 800,00", "Samsung Note 20 placa queimada - R$: 500,00"], #Celulares
+        2 : ["Carcaça Notebook Lenovo - R$: 300,00"], # Notebooks
+        3 : ["Monitor 20' sem imagem - R$: 100,00"], #Televisores
+        4 : ["Luminária queimada - R$: 20,00"], #Perifericos
     }
     return produtos
 
-def menuproduto():
+def tipos_produtos():
     while True:
         try:
-            print("Produtos")
-            for opcao,produto in produtos1().items():
-                print(f"{opcao}- {produto}")
-            
-            print("\n")
-            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos1())+1} - voltar): "))
-            if opcao_produto <= 0 or opcao_produto > (len(produtos1())+1):
-                    raise VerificaError
-            return opcao_produto
+            print("Qual tipo de produto deseja ver ? \n")
+            print("1- Celulares")
+            print("2- Notebooks")
+            print("3- Televisores")
+            print("4- Perifericos")
+
+            opcao_ver = int(input("Digite a opção desejada: "))
+            if opcao_ver <= 0 or opcao_ver > 4:
+                 raise VerificaError
+            return opcao_ver
+        except VerificaError:
+            print("Digite apenas as opções exibidas em tela \n")
+        except ValueError:
+            print("O valor informado não é um número \n")
+
+
+def menuproduto():
+    produtos_dict = produtos1()
+    produto_ver = tipos_produtos()          
+    valor_selecionado = produtos_dict.get(produto_ver, [])
+    cont = 1
+    roda = True
+    while roda:
+        try:
+            if produto_ver in produtos_dict:
+                print("Produtos")
+                for valor in valor_selecionado:
+                    print(f"{cont}- {valor}")
+                    cont +=1
+                
+                print("\n")
+                opcao_produto = int(input(f"Escolha um produto/opção ({(len(valor_selecionado)+1)} - voltar): "))
+                if opcao_produto <= 0 or opcao_produto > (len(valor_selecionado)+1):
+                        raise VerificaError
+                return opcao_produto
         except ValueError:
             print("O valor informado não é um número \n")
         except VerificaError:
@@ -37,14 +62,16 @@ def menuproduto():
 def escolha_produto():
     produtos_dict = produtos1()
     produto_escolhido = menuproduto()
+    produto_ver = tipos_produtos()  
+    valor_selecionado = produtos_dict.get(produto_ver, [])
     roda = True
     while roda:
         try:
-            if produto_escolhido == (len(produtos_dict)+1):
+            if produto_escolhido ==  (len(valor_selecionado)+1):
                 print("\n")
                 roda = False
             else:
-                if produto_escolhido in produtos_dict:
+                if produto_escolhido in produtos_dict: #Ver como fazer para selecionar o produto e exibi-lo para compra
                     nome_produto = produtos_dict[produto_escolhido].split(" - ")[0].upper()
                 
                     print(f'''{produtos_dict[produto_escolhido]}
@@ -69,7 +96,6 @@ def escolha_produto():
             print("O valor informado não é um número \n")
 
 #DESCARTE 
-
 
 def menudescarte():
     while True:
