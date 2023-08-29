@@ -72,7 +72,8 @@ def escolha_produto():
 
 
 def menudescarte():
-    while True:
+    roda = True
+    while roda:
         try:
             print("Qual o tipo de produto que deseja descartar ? \n")
             print("1- Celulares")
@@ -85,11 +86,29 @@ def menudescarte():
             opcao_descarte = int(input("Digite a opção desejada: "))
             if opcao_descarte <= 0 or opcao_descarte > 6:
                  raise VerificaError
+            
             return opcao_descarte 
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
         except ValueError:
             print("O valor informado não é um número \n")
+    
+
+def add_produto():
+    try:
+        produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+        produto_modelo = input("Modelo do produto: ")
+        defeito = input("Em uma palavra descreva o problema: ")
+        valor = float(input("Valor para a venda do residuo: R$: "))
+        juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
+        print("\n")
+        
+        pagamento()
+        aviso(produto_marca, produto_modelo, defeito, valor)
+        produtos1()[(len(produtos1()) + 1)] = juntar_string # Atualizar a lista que não esta indo
+    except ValueError:
+        print("O valor informado não é um número \n")
+    
 
 def pagamento():
     roda = True
@@ -127,92 +146,24 @@ def pagamento():
             print("O cpf informado não é valido. \nExemplo: 12345678910 \n")
 
 def aviso(produto_marca, produto_modelo, defeito, valor):
-    print(f"O celular de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento por R$: {valor}! \n") 
+    print(f"O produto de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento por R$: {valor}! \n") 
     print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
     print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
 
-def celulares():
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do celular: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-            
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            roda = False
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def notebooks():
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do notebook: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            roda = False
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def televisores():
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do televisor: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            roda = False
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def perifericos():
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do periferico: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            print("\n")
-
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            roda = False
-        except ValueError:
-            print("O valor informado não é um número \n")
-
-def cadescarte(opcao_descarte):
-    match opcao_descarte:
-        case 1:
-            celulares()
-        case 2:
-            notebooks()
-        case 3:
-            televisores()
-        case 4:
-            perifericos()
-        case 5:
-            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
-
 def descarte():
-    opcao_descarte = menudescarte()
-    print("\n")
-
-    cadescarte(opcao_descarte)
+    roda = True
+    while roda:
+        opcao_descarte = menudescarte()
+        print("\n")
+        if opcao_descarte == 6:
+            print("\n")
+            roda = False
+        elif opcao_descarte == 5:
+            print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
+            roda = False
+        else:
+            add_produto() # Atualizar a lista que não esta indo
+            roda = False
 
 #Contato & CPF
 def formatar_cpf(cpf):
