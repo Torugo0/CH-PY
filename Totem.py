@@ -105,7 +105,8 @@ def add_produto():
         
         pagamento()
         aviso(produto_marca, produto_modelo, defeito, valor)
-        produtos1()[(len(produtos1()) + 1)] = juntar_string # Atualizar a lista que não esta indo
+        new = produtos1()[len(produtos1())] = juntar_string
+        return new # Atualizar a lista que não esta indo, e tratamento de erro da um stop, precisa de um while True
     except ValueError:
         print("O valor informado não é um número \n")
     
