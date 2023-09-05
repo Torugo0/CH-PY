@@ -7,26 +7,24 @@ class VerificaError(Exception):
      pass
 
 #PRODUTOS 
-def produtos1():
-    produtos = {
+produtos = {
         1 : "Iphone 6s com bateria inchada - R$: 800,00",
         2 : "Carcaça Notebook Lenovo - R$: 300,00",
         3 : "Monitor 20' sem imagem - R$: 100,00",
         4 : "Samsung Note 20 placa queimada - R$: 500,00",
         5 : "Luminária queimada - R$: 20,00",
-    }
-    return produtos
+}
 
 def menuproduto():
     while True:
         try:
             print("Produtos")
-            for opcao,produto in produtos1().items():
+            for opcao,produto in produtos.items():
                 print(f"{opcao}- {produto}")
             
             print("\n")
-            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos1())+1} - voltar): "))
-            if opcao_produto <= 0 or opcao_produto > (len(produtos1())+1):
+            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos)+1} - voltar): "))
+            if opcao_produto <= 0 or opcao_produto > (len(produtos)+1):
                     raise VerificaError
             return opcao_produto
         except ValueError:
@@ -35,7 +33,7 @@ def menuproduto():
             print("Digite apenas as opções exibidas em tela \n")
 
 def escolha_produto():
-    produtos_dict = produtos1()
+    produtos_dict = produtos
     produto_escolhido = menuproduto()
     roda = True
     while roda:
@@ -95,27 +93,29 @@ def menudescarte():
     
 
 def add_produto():
-    try:
-        produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-        produto_modelo = input("Modelo do produto: ")
-        defeito = input("Em uma palavra descreva o problema: ")
-        valor = float(input("Valor para a venda do residuo: R$: "))
-        juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
-        print("\n")
-        
-        pagamento()
-        aviso(produto_marca, produto_modelo, defeito, valor)
-        new = produtos1()[len(produtos1())] = juntar_string
-        return new # Atualizar a lista que não esta indo, e tratamento de erro da um stop, precisa de um while True
-    except ValueError:
-        print("O valor informado não é um número \n")
-    
-
-def pagamento():
     roda = True
     while roda:
         try:
-            nome = input("Digite o nome de quem vai receber: ")
+            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+            produto_modelo = input("Modelo do produto: ")
+            defeito = input("Em uma palavra descreva o problema: ")
+            valor = float(input("Valor para a venda do residuo: R$: "))
+            juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
+            print("\n")
+            
+            pagamento()
+            aviso(produto_marca, produto_modelo, defeito, valor)
+            new = produtos[len(produtos)+1] = juntar_string
+            return new
+        except ValueError:
+            print("O valor informado não é um número \n")
+    
+def pagamento():
+    roda = True
+    nome = input("Digite o nome de quem vai receber: ")
+
+    while roda:
+        try:
             print("Insira seu pix para receber o pagamento do seu produto quando for vendido \n")
             print("1- CPF")
             print("2- Telefone")
@@ -163,14 +163,13 @@ def descarte():
             print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
             roda = False
         else:
-            add_produto() # Atualizar a lista que não esta indo
+            add_produto() 
             roda = False
 
 #Contato & CPF
 def formatar_cpf(cpf):
     cpf_formatado = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
     return cpf_formatado
-
 
 def cpf(nome):
     cpf = input(f"Olá {nome}, digite seu CPF: ")
