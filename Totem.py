@@ -16,6 +16,13 @@ produtos = {
 }
 
 def menuproduto():
+    """
+    Exibe o menu de produtos e solicita a escolha do usuário.
+    
+    Returns:
+        int: A opção escolhida pelo usuário.
+    """
+
     while True:
         try:
             print("Produtos")
@@ -33,6 +40,10 @@ def menuproduto():
             print("Digite apenas as opções exibidas em tela \n")
 
 def escolha_produto():
+    """
+    Permite ao usuário escolher um produto e realizar a compra.
+    """
+
     produtos_dict = produtos
     produto_escolhido = menuproduto()
     roda = True
@@ -67,9 +78,14 @@ def escolha_produto():
             print("O valor informado não é um número \n")
 
 #DESCARTE 
-
-
 def menudescarte():
+    """
+    Exibe o menu de descarte de produtos e solicita a escolha do usuário.
+
+    Returns:
+        int: A opção escolhida pelo usuário.
+    """
+
     roda = True
     while roda:
         try:
@@ -93,6 +109,13 @@ def menudescarte():
     
 
 def add_produto():
+    """
+    Permite ao usuário adicionar um produto para descarte.
+
+    Returns:
+        str: O novo produto adicionado.
+    """
+
     roda = True
     while roda:
         try:
@@ -111,6 +134,10 @@ def add_produto():
             print("O valor informado não é um número \n")
     
 def pagamento():
+    """
+    Permite ao usuário configurar o método de pagamento.
+    """
+
     roda = True
     nome = input("Digite o nome de quem vai receber: ")
 
@@ -147,11 +174,17 @@ def pagamento():
             print("O cpf informado não é valido. \nExemplo: 12345678910 \n")
 
 def aviso(produto_marca, produto_modelo, defeito, valor):
+    """
+    Exibe um aviso com informações sobre o produto disponível para compra.
+    """
     print(f"O produto de marca: {produto_marca}, modelo: {produto_modelo} e com o defeito: {defeito} está disponivel para compra neste momento por R$: {valor}! \n") 
     print("AVISO: RESIDUOS QUE PERMANECEREM POR MAIS DE 30 DIAS SERÃO LEVADOS PARA A ÁREA DE TRATAMENTO ADEQUADO")
     print("Muito obrigado por contribuir com o meio ambiente, a Mãe natrueza e a ElekSell agradece !! \n")
 
 def descarte():
+    """
+    Permite ao usuário escolher o tipo de produto para descarte.
+    """
     roda = True
     while roda:
         opcao_descarte = menudescarte()
@@ -172,12 +205,20 @@ def formatar_cpf(cpf):
     return cpf_formatado
 
 def cpf(nome):
+    """
+    Solicita e verifica o CPF do usuário.
+    """
+
     cpf = input(f"Olá {nome}, digite seu CPF: ")
     digitos= len(cpf)
     if digitos < 11 or digitos > 11:
         raise CpfError
 
 def numero():
+    """
+    Solicita e verifica um número de telefone.
+    """
+
     telefone = int(input("Número para contato: "))
     digitost = len(str(telefone))
     if digitost < 11 or digitost > 11:
@@ -186,6 +227,10 @@ def numero():
 
 # Menus
 def menume():
+    """
+    Exibe um menu para que o usuário forneça informações pessoais.
+    """
+
     while True:
         try:
             print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
@@ -205,6 +250,11 @@ def menume():
              print("O telefone informado não é válida. \nExemplo: 11912345678 \n")          
 
 def menu():
+    """
+    Função principal que controla o menu principal e as ações do usuário.
+
+    """
+    
     opcao = menume()
     
     while opcao != 3:

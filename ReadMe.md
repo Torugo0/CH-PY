@@ -35,4 +35,10 @@ Nesta sprint foram feitas poucas modificações ao usuário, e mais focada a que
 - Foi acrescentado também o tratamento de erros, para que o programa não pare caso o usuário digite alguma informação invalida em aglum input. 
 
 
+## ATUALIZÇÕES DO TOTEM DA TERCEIRA SPRINT - 17/09/2023
+Sprint focada para a melhora do programa, nenhuma alteração para o usuário.
 
+### Desenvolvedor
+- Adicionado Docstrings as funções para melhor entendimento do que se trata.
+- Implementação de dicionários contendo os produtos.
+- Atualização dos dicionários toda vez que o usuário adiciona o produto.
