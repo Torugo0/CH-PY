@@ -11,34 +11,21 @@ class VerificaError(Exception):
      pass
 
 #PRODUTOS 
-produtos = {
-        1 : "Iphone 6s com bateria inchada - R$: 800,00",
-        2 : "Carcaça Notebook Lenovo - R$: 300,00",
-        3 : "Monitor 20' sem imagem - R$: 100,00",
-        4 : "Samsung Note 20 placa queimada - R$: 500,00",
-        5 : "Luminária queimada - R$: 20,00",
-}
 
-def armazena_produto():
-    '''Função que armazena os produtos em um arquivo json'''
-
-    
-
-
-def menuproduto():
-    """
-    Exibe o menu de produtos e solicita a escolha do usuário.
-    """
+def exibe_produto():
+    '''Função que exibe os produtos existentes no arquivo JSON'''
+    with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+        produtos = json.load(arquivo)
 
     while True:
         try:
             print("Produtos")
             for opcao,produto in produtos.items():
-                print(f"{opcao}- {produto}")
+                print(f"{int(opcao)}- {produto}")
             
             print("\n")
-            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos)+1} - voltar): "))
-            if opcao_produto <= 0 or opcao_produto > (len(produtos)+1):
+            opcao_produto = int(input(f"Escolha um produto/opção (0 - voltar): "))
+            if opcao_produto < 0 or opcao_produto > len(produtos):
                     raise VerificaError
             return opcao_produto
         except ValueError:
@@ -46,27 +33,31 @@ def menuproduto():
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
 
+
 def escolha_produto():
     """
     Permite ao usuário escolher um produto e realizar a compra.
     """
+    with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+        produtos = json.load(arquivo)
 
     produtos_dict = produtos
-    produto_escolhido = menuproduto()
+    produto_escolhido = exibe_produto()
     roda = True
     while roda:
         try:
-            if produto_escolhido == (len(produtos_dict)+1):
+            if produto_escolhido == 0:
                 print("\n")
                 roda = False
             else:
-                if produto_escolhido in produtos_dict:
-                    nome_produto = produtos_dict[produto_escolhido].split(" - ")[0].upper()
+                if str(produto_escolhido) in produtos_dict:
+                    nome_produto = produtos_dict[str(produto_escolhido)].split(" - ")[0].upper()
                 
-                    print(f'''{produtos_dict[produto_escolhido]}
+                    print(f'''{produtos_dict[str(produto_escolhido)]}
 - Deseja comprar o produto?
 (1- SIM // 2- NÃO)
 ''')
+                    # fazer função de exclusão do produto
                     comprar = int(input("Comprar: "))
                     if comprar <= 0 or comprar > 2:
                             raise VerificaError
@@ -116,29 +107,31 @@ def menudescarte():
     
 
 def add_produto():
-    """
-    Permite ao usuário adicionar um produto para descarte.
+    '''Função que armazena o produto descartado pelo usuario em um arquivo json'''
 
-    Returns:
-        str: O novo produto adicionado.
-    """
+    if not os.path.exists('./Produtos_JSON'):
+        os.makedirs('./Produtos_JSON')
 
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do produto: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
-            print("\n")
-            
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            new = produtos[len(produtos)+1] = juntar_string
-            return new
-        except ValueError:
-            print("O valor informado não é um número \n")
+    try:
+        with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+            produtos = json.load(arquivo)
+    except FileNotFoundError:
+        produtos = {}
+    
+    produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+    produto_modelo = input("Modelo do produto: ")
+    defeito = input("Em uma palavra descreva o problema: ")
+    valor = float(input("Valor para a venda do residuo: R$: "))
+    juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
+    id = len(produtos)+1
+    print("\n")
+
+    pagamento()
+    aviso(produto_marca, produto_modelo, defeito, valor)
+    new = produtos[id] = juntar_string
+
+    with open('./Produtos_JSON/produtos.json', 'w', encoding='utf-8') as arquivo:
+        json.dump(produtos, arquivo, indent=4, ensure_ascii=False)
     
 def pagamento():
     """
