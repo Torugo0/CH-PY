@@ -1,6 +1,8 @@
 # Imports utilizados
 import json
 import os
+from PIL import Image
+import qrcode
 
 #Exceções personalizadas
 class TelefoneError(Exception):
@@ -19,21 +21,39 @@ def exibe_produto():
 
     while True:
         try:
-            print("Produtos")
-            for opcao,produto in produtos.items():
-                print(f"{int(opcao)}- {produto}")
-            
-            print("\n")
-            opcao_produto = int(input(f"Escolha um produto/opção (0 - voltar): "))
-            if opcao_produto < 0 or opcao_produto > len(produtos):
-                    raise VerificaError
-            return opcao_produto
+            if len(produtos) == 0:
+                opcao_produto = 0
+                print("Nenhum produto disponivel")
+                return opcao_produto
+            else:
+                print("Produtos")
+                for opcao,produto in produtos.items():
+                    print(f"{int(opcao)}- {produto}")
+                
+                print("\n")
+                opcao_produto = int(input(f"Escolha um produto/opção (0 - voltar): "))
+                if opcao_produto < 0 or opcao_produto > len(produtos):
+                        raise VerificaError
+                return opcao_produto
         except ValueError:
             print("O valor informado não é um número \n")
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
 
-
+def QrCode():
+    '''Gera o QRcode para o "pagamento" '''
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    
+    qr.add_data('https://www.fiap.com.br/')
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.show()
+    
 def escolha_produto():
     """
     Permite ao usuário escolher um produto e realizar a compra.
@@ -63,10 +83,26 @@ def escolha_produto():
                             raise VerificaError
 
                     if comprar == 1:
-                            print("Escaneie o QR CODE para o pagamento via PIX")
-                            print(f"TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM(a) {nome_produto}")
-                            print("Obrigado por comprar conosco !! \n")
-                            roda = False
+                        with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+                            produtos = json.load(arquivo)
+                        del produtos[str(produto_escolhido)]
+
+                        # Atualize as chaves do dicionário para preencher lacunas
+                        new_produtos = {}
+                        i = 1
+                        for chave, valor in produtos.items():
+                            new_produtos[str(i)] = valor
+                            i += 1
+
+                        with open('./Produtos_JSON/produtos.json', 'w', encoding='utf-8') as arquivo:
+                            json.dump(new_produtos, arquivo, indent=4, ensure_ascii=False)
+
+                        print("Escaneie o QR CODE para o pagamento via PIX")
+                        QrCode()
+                        print(f"TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM(a) {nome_produto}")
+                        print("Obrigado por comprar conosco !! \n")
+                        
+                        roda = False
                     else:
                             print("Operação cancelada \n")
                             roda = False
