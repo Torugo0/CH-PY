@@ -1,69 +1,123 @@
 # Imports utilizados
 import json
 import os
+from PIL import Image
+import qrcode
 
 #Exceções personalizadas
 class TelefoneError(Exception):
-     pass
+    pass
 class CpfError(Exception):
-     pass
+    pass
 class VerificaError(Exception):
-     pass
+    pass
+class DataError(Exception):
+    pass
 
-#PRODUTOS 
-produtos = {
-        1 : "Iphone 6s com bateria inchada - R$: 800,00",
-        2 : "Carcaça Notebook Lenovo - R$: 300,00",
-        3 : "Monitor 20' sem imagem - R$: 100,00",
-        4 : "Samsung Note 20 placa queimada - R$: 500,00",
-        5 : "Luminária queimada - R$: 20,00",
-}
+# Verificações
+ 
+def verifica_json_dados():
+    if not os.path.exists('./Dados_JSON'):
+            os.makedirs('./Dados_JSON')
 
-def armazena_produto():
-    '''Função que armazena os produtos em um arquivo json'''
+    try:
+        with open('./Dados_JSON/dados.json', 'r', encoding='utf-8') as arquivo:
+            dados = json.load(arquivo)
+    except FileNotFoundError:
+        dados = {}
+    
+    return dados
 
+def verifica_json_produtos():
+    if not os.path.exists('./Produtos_JSON'):
+        os.makedirs('./Produtos_JSON')
+
+    try:
+        with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+            produtos = json.load(arquivo)
+    except FileNotFoundError:
+        produtos = {}
+    
+    return produtos
+
+def validar_cpf(cpf, dados):
+    for id, cadastro in dados.items():
+        if cadastro["CPF"] == cpf:
+            return True
+    return False
+
+def validar_login():
+    dados = verifica_json_dados()
+
+    cpf, senha = login()
+
+    for id, dados_login in dados.items():
+        if dados_login["CPF"] == cpf and dados_login["Senha"] == senha:
+            return True
+    return False
     
 
+#PRODUTOS
 
-def menuproduto():
-    """
-    Exibe o menu de produtos e solicita a escolha do usuário.
-    """
+def exibe_produto():
+    '''Função que exibe os produtos existentes no arquivo JSON'''
+    produtos = verifica_json_produtos()
 
     while True:
         try:
-            print("Produtos")
-            for opcao,produto in produtos.items():
-                print(f"{opcao}- {produto}")
-            
-            print("\n")
-            opcao_produto = int(input(f"Escolha um produto/opção ({len(produtos)+1} - voltar): "))
-            if opcao_produto <= 0 or opcao_produto > (len(produtos)+1):
-                    raise VerificaError
-            return opcao_produto
+            if len(produtos) == 0:
+                opcao_produto = 0
+                print("Nenhum produto disponivel")
+                return opcao_produto
+            else:
+                print("Produtos")
+                for opcao,produto in produtos.items():
+                    print(f"{int(opcao)}- {produto}")
+                
+                print("\n")
+                opcao_produto = int(input(f"Escolha um produto/opção (0 - voltar): "))
+                if opcao_produto < 0 or opcao_produto > len(produtos):
+                        raise VerificaError
+                return opcao_produto
         except ValueError:
             print("O valor informado não é um número \n")
         except VerificaError:
             print("Digite apenas as opções exibidas em tela \n")
 
+def QrCode():
+    '''Gera o QRcode para o "pagamento" '''
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    
+    qr.add_data('https://www.fiap.com.br/')
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.show()
+
 def escolha_produto():
     """
     Permite ao usuário escolher um produto e realizar a compra.
     """
+    
+    produtos = verifica_json_produtos()
 
     produtos_dict = produtos
-    produto_escolhido = menuproduto()
+    produto_escolhido = exibe_produto()
     roda = True
     while roda:
         try:
-            if produto_escolhido == (len(produtos_dict)+1):
+            if produto_escolhido == 0:
                 print("\n")
                 roda = False
             else:
-                if produto_escolhido in produtos_dict:
-                    nome_produto = produtos_dict[produto_escolhido].split(" - ")[0].upper()
+                if str(produto_escolhido) in produtos_dict:
+                    nome_produto = produtos_dict[str(produto_escolhido)].split(" - ")[0].upper()
                 
-                    print(f'''{produtos_dict[produto_escolhido]}
+                    print(f'''{produtos_dict[str(produto_escolhido)]}
 - Deseja comprar o produto?
 (1- SIM // 2- NÃO)
 ''')
@@ -72,10 +126,25 @@ def escolha_produto():
                             raise VerificaError
 
                     if comprar == 1:
-                            print("Escaneie o QR CODE para o pagamento via PIX")
-                            print(f"TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM(a) {nome_produto}")
-                            print("Obrigado por comprar conosco !! \n")
-                            roda = False
+                        with open('./Produtos_JSON/produtos.json', 'r', encoding='utf-8') as arquivo:
+                            produtos = json.load(arquivo)
+                        del produtos[str(produto_escolhido)]
+
+                        new_produtos = {}
+                        i = 1
+                        for chave, valor in produtos.items():
+                            new_produtos[str(i)] = valor
+                            i += 1
+
+                        with open('./Produtos_JSON/produtos.json', 'w', encoding='utf-8') as arquivo:
+                            json.dump(new_produtos, arquivo, indent=4, ensure_ascii=False)
+
+                        print("Escaneie o QR CODE para o pagamento via PIX")
+                        QrCode()
+                        print(f"TRANSAÇÃO ACEITA, VOCÊ ACABOU DE COMPRAR UM(a) {nome_produto}")
+                        print("Obrigado por comprar conosco !! \n")
+                        
+                        roda = False
                     else:
                             print("Operação cancelada \n")
                             roda = False
@@ -116,29 +185,24 @@ def menudescarte():
     
 
 def add_produto():
-    """
-    Permite ao usuário adicionar um produto para descarte.
+    '''Função que armazena o produto descartado pelo usuario em um arquivo json'''
 
-    Returns:
-        str: O novo produto adicionado.
-    """
+    produtos = verifica_json_produtos()
+    
+    produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
+    produto_modelo = input("Modelo do produto: ")
+    defeito = input("Em uma palavra descreva o problema: ")
+    valor = float(input("Valor para a venda do residuo: R$: "))
+    juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
+    id = len(produtos)+1
+    print("\n")
 
-    roda = True
-    while roda:
-        try:
-            produto_marca = input("Marca (EX: Apple, Samsung, Xiaomi, etc.): ")
-            produto_modelo = input("Modelo do produto: ")
-            defeito = input("Em uma palavra descreva o problema: ")
-            valor = float(input("Valor para a venda do residuo: R$: "))
-            juntar_string = f"{produto_modelo} {defeito} - R$: {valor:.2f}"
-            print("\n")
-            
-            pagamento()
-            aviso(produto_marca, produto_modelo, defeito, valor)
-            new = produtos[len(produtos)+1] = juntar_string
-            return new
-        except ValueError:
-            print("O valor informado não é um número \n")
+    pagamento()
+    aviso(produto_marca, produto_modelo, defeito, valor)
+    new = produtos[id] = juntar_string
+
+    with open('./Produtos_JSON/produtos.json', 'w', encoding='utf-8') as arquivo:
+        json.dump(produtos, arquivo, indent=4, ensure_ascii=False)
     
 def pagamento():
     """
@@ -162,7 +226,7 @@ def pagamento():
             
             match pix:
                 case 1:
-                    cpf(nome)
+                    cpf()
                     roda = False
                 case 2:
                     numero()
@@ -207,45 +271,80 @@ def descarte():
             roda = False
 
 #Contato & CPF
-def formatar_cpf(cpf):
+def formata_dados(nascimento: str = "" , cpf: str = "" , telefone: str = "" ):
+    nascimento_formatado = f"{nascimento[:2]}/{nascimento[2:4]}/{nascimento[4:]}"
     cpf_formatado = f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
-    return cpf_formatado
+    telefone_formatado = f"({telefone[:2]}) {telefone[2:7]}-{telefone[7:11]}"
+    
+    return nascimento_formatado, cpf_formatado, telefone_formatado
 
-def cpf(nome):
+def cpf():
     """
     Solicita e verifica o CPF do usuário.
     """
 
-    cpf = input(f"Olá {nome}, digite seu CPF: ")
-    digitos= len(cpf)
-    if digitos < 11 or digitos > 11:
+    cpf = formata_dados(cpf = input("Digite seu CPF: "))[1]
+    if len(cpf) < 14 or len(cpf) > 14:
         raise CpfError
+    return cpf
+
 
 def numero():
     """
     Solicita e verifica um número de telefone.
     """
 
-    telefone = int(input("Número para contato: "))
-    digitost = len(str(telefone))
-    if digitost < 11 or digitost > 11:
-            raise TelefoneError
-    print("\n")
+    telefone = formata_dados(telefone = input("Digite seu telefone: "))[2]
+    if len(telefone) < 15 or len(telefone) > 15:
+        raise TelefoneError
+    
+    return telefone
 
+def nascimento():
+    data = formata_dados(nascimento=input("Digite sua data de nascimento: "))[0]
+    if len(data) < 10 or len(data) > 10:
+        raise DataError
+    
 # Menus
-def menume():
-    """
-    Exibe um menu para que o usuário forneça informações pessoais.
-    """
+
+def cadastro():
+    dados = verifica_json_dados()
 
     while True:
-        try:
-            print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
+        try: 
+            id = (len(dados) + 1)
+            armazena_cadastro = {}
 
             print("Informe seus dados")
-            nome = input("Digite seu nome: ")
-            cpf(nome)
-            numero()
+
+            nome = input("Digite seu nome completo: ")
+
+            var_cpf = cpf()
+            if validar_cpf(var_cpf, dados):
+                print("CPF já cadastrado. Não é possível criar um novo cadastro com o mesmo CPF.")
+                break
+                
+            data = formata_dados(nascimento=input("Digite sua data de nascimento: "))[0]
+
+            email = input("Digite seu E-mail: ")
+
+            var_telefone = numero()
+
+            senha = input("Criar uma senha: ")
+
+            armazena_cadastro[id] = {"Nome" : nome,
+                                     "Nascimento": data,
+                                     "CPF" : var_cpf,
+                                     "Número": var_telefone,
+                                     "E-mail": email,
+                                     "Senha" : senha }
+            
+            dados.update(armazena_cadastro)
+
+            with open('./Dados_JSON/dados.json', 'w', encoding='utf-8') as arquivo:
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+                
+            print("Cadastro realizado com sucesso! \n")
 
             opcao = 0
             return opcao
@@ -254,7 +353,21 @@ def menume():
         except CpfError:
              print("O cpf informado não é valido. \nExemplo: 12345678910 \n")
         except TelefoneError:
-             print("O telefone informado não é válida. \nExemplo: 11912345678 \n")          
+             print("O telefone informado não é válida. \nExemplo: 11912345678 \n")  
+        except DataError:
+            print("A data de nascimento não é valida. \nExemplo: 12122005 \n")        
+
+def login():
+    while True:
+        try:    
+            cpf = formata_dados(cpf = input("Digite seu CPF: "))[1]
+            if len(cpf) < 14 or len(cpf) > 14 :
+                raise CpfError
+            senha = input("Digite sua uma senha: ")
+            return cpf, senha
+        except CpfError:
+            print("O cpf informado não é valido. \nExemplo: 12345678910 \n")
+
 
 def menu():
     """
@@ -262,7 +375,7 @@ def menu():
 
     """
     
-    opcao = menume()
+    opcao = 0
     
     while opcao != 3:
         while True:
@@ -282,11 +395,47 @@ def menu():
                         case 2:
                             descarte()
                         case 3:
-                            print("ElekSell agradece a sua vinda, muito obrigado !")
+                            print("Finalizando sessão")
                             break
+                
             except ValueError:
                 print("O valor informado não é um número \n")
             except VerificaError:
                 print("Digite apenas as opções exibidas em tela \n")
 
-menu()
+
+def programa():
+    print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
+    opcao = 0
+    while opcao != 3:
+        while True:
+            try:
+                print("1 - Cadastro")
+                print("2 - Login")
+                print("3 - Encerrar programa \n")
+
+                opcao = int(input("Escolha a opção desejada: "))
+                if opcao <= 0 or opcao > 3:
+                    raise VerificaError
+                print("\n")
+
+                if opcao == 1:
+                    cadastro()
+                    break
+                elif opcao == 2:
+                    if validar_login():
+                        menu()
+                        opcao = 3
+                        break
+                    else:
+                        print("Login inválido")
+                elif opcao == 3: 
+                    print("ElekSell agradece a sua vinda, muito obrigado !")
+                    break
+
+            except ValueError:
+                print("O valor informado não é um número \n")
+            except VerificaError:
+                print("Digite apenas as opções exibidas em tela \n")
+
+programa()
