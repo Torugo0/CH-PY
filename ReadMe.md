@@ -42,3 +42,14 @@ Sprint focada para a melhora do programa, nenhuma alteração para o usuário.
 - Adicionado Docstrings as funções para melhor entendimento do que se trata.
 - Implementação de dicionários contendo os produtos.
 - Atualização dos dicionários toda vez que o usuário adiciona o produto.
+
+## ATUALIZÇÕES DO TOTEM DA QUARTA SPRINT - 12/11/2023
+Nesta sprint a principal implementação foi um sistema de cadastro/login 
+
+### Usuário
+- Agora o usuário pode criar uma conta 
+- Após o usuário escolher comprar um produto é gerado o QRcode
+- Lista de produtos totalmente atualizada durante a rodagem do programa
+
+### Desenvolvedor
+- Implementação de armazenamento de dados e produtos em JSON
