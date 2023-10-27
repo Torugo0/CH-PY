@@ -199,7 +199,7 @@ def add_produto():
 
     pagamento()
     aviso(produto_marca, produto_modelo, defeito, valor)
-    new = produtos[id] = juntar_string
+    produtos[id] = juntar_string
 
     with open('./Produtos_JSON/produtos.json', 'w', encoding='utf-8') as arquivo:
         json.dump(produtos, arquivo, indent=4, ensure_ascii=False)
@@ -301,9 +301,14 @@ def numero():
     return telefone
 
 def nascimento():
+    """
+    Solicita e verifica a data de nascimento.
+    """
     data = formata_dados(nascimento=input("Digite sua data de nascimento: "))[0]
     if len(data) < 10 or len(data) > 10:
         raise DataError
+    
+    return data
     
 # Menus
 
@@ -313,8 +318,6 @@ def cadastro():
     while True:
         try: 
             id = (len(dados) + 1)
-            armazena_cadastro = {}
-
             print("Informe seus dados")
 
             nome = input("Digite seu nome completo: ")
@@ -324,7 +327,7 @@ def cadastro():
                 print("CPF já cadastrado. Não é possível criar um novo cadastro com o mesmo CPF.")
                 break
                 
-            data = formata_dados(nascimento=input("Digite sua data de nascimento: "))[0]
+            data = nascimento()
 
             email = input("Digite seu E-mail: ")
 
@@ -332,14 +335,14 @@ def cadastro():
 
             senha = input("Criar uma senha: ")
 
-            armazena_cadastro[id] = {"Nome" : nome,
+            novo_cadastro = {"Nome" : nome,
                                      "Nascimento": data,
                                      "CPF" : var_cpf,
                                      "Número": var_telefone,
                                      "E-mail": email,
                                      "Senha" : senha }
             
-            dados.update(armazena_cadastro)
+            dados[id] = novo_cadastro
 
             with open('./Dados_JSON/dados.json', 'w', encoding='utf-8') as arquivo:
                 json.dump(dados, arquivo, indent=4, ensure_ascii=False)
@@ -355,7 +358,7 @@ def cadastro():
         except TelefoneError:
              print("O telefone informado não é válida. \nExemplo: 11912345678 \n")  
         except DataError:
-            print("A data de nascimento não é valida. \nExemplo: 12122005 \n")        
+            print("A data de nascimento não é valida. \nExemplo: 12122005 \n")
 
 def login():
     while True:
@@ -374,9 +377,8 @@ def menu():
     Função principal que controla o menu principal e as ações do usuário.
 
     """
-    
+
     opcao = 0
-    
     while opcao != 3:
         while True:
             try:
@@ -402,7 +404,6 @@ def menu():
                 print("O valor informado não é um número \n")
             except VerificaError:
                 print("Digite apenas as opções exibidas em tela \n")
-
 
 def programa():
     print("BEM-VINDO AO PONTO DE DESCARTE INTELIGENTE, ELEKSELL AGRADECE A SUA PRESENÇA !!! \n")
