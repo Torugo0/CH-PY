@@ -363,7 +363,7 @@ def login():
             cpf = formata_dados(cpf = input("Digite seu CPF: "))[1]
             if len(cpf) < 14 or len(cpf) > 14 :
                 raise CpfError
-            senha = input("Digite sua uma senha: ")
+            senha = input("Digite sua senha: ")
             return cpf, senha
         except CpfError:
             print("O cpf informado não é valido. \nExemplo: 12345678910 \n")
@@ -424,6 +424,7 @@ def programa():
                     break
                 elif opcao == 2:
                     if validar_login():
+                        print("Login efetuado com sucesso \n")
                         menu()
                         opcao = 3
                         break
