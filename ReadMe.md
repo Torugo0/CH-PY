@@ -4,9 +4,6 @@ Este projeto é um protótipo de um "Totem Eletrônico", desenvolvido pelos alun
 </br>
 
 ## Equipe
-- Felipe Arnus – RM: 550923
-- João Pedro Vieira – RM: 99805
-- João Pedro Chambrone – RM: 97857
 - Vitor Hugo – RM: 97758
 
 </br>
@@ -52,4 +49,5 @@ Nesta sprint a principal implementação foi um sistema de cadastro/login
 - Lista de produtos totalmente atualizada durante a rodagem do programa
 
 ### Desenvolvedor
-- Implementação de armazenamento de dados e produtos em JSON
+[<img src="https://github.com/Torugo0.png" width="80">](https://github.com/Torugo0)  
+*Vitor Hugo*
