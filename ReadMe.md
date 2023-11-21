@@ -1,53 +1,28 @@
-# Totem Eletrônico 
-Este projeto é um protótipo de um "Totem Eletrônico", desenvolvido pelos alunos do curso de Engenharia de Software da FIAP.
+# ElekSell - Ponto de Descarte Inteligente
 
-</br>
-
-## Equipe
-- Vitor Hugo – RM: 97758
-
-</br>
-
-## Sobre o Projeto
-O projeto foi desenvolvido no Visual Studio Code e tem o objetivo de permitir que os usuários possam visualizar os resíduos eletrônicos disponíveis em um determinado local para a compra, além de poderem inserir os dados necessários para o descarte e venda dos resíduos.
-
-</br>
+Bem-vindo ao ElekSell, um sistema inovador de descarte inteligente! Este projeto tem como objetivo facilitar o descarte de produtos eletrônicos de forma sustentável, promovendo a reciclagem e o cuidado com o meio ambiente.
 
 ## Funcionalidades
-Ao iniciar o programa, o usuário é solicitado a digitar seu nome, CPF e número de telefone para possíveis futuros contatos. Em seguida, é exibido um menu com três opções:
-- Ver produtos: exibe uma lista de produtos disponíveis para compra, com seus respectivos defeitos e preços. O usuário pode escolher um produto a partir da numeração exibida e, em seguida, decidir se deseja efetuar a compra ou não.
-- Depositar produtos: exibe um menu com opções para descarte de diferentes resíduos eletrônicos, como celulares, notebooks, televisores (máximo de 20 polegadas), periféricos e pilhas. Se o usuário escolher a opção "Celulares", "Notebooks", "Televisores" ou "Periféricos", será solicitado que ele digite informações sobre o produto, como marca, modelo, defeito e, caso o produto seja comprado futuramente, a sua chave PIX (CPF, Telefone ou E-mail). Em seguida, o programa exibe uma mensagem informando que o produto está disponível para compra e que, se não for vendido em 30 dias, será levado para a área de tratamento adequado.
-- Sair: encerra o programa.
 
-O programa continuará em um loop até que o usuário escolha a opção "Sair".
+1. **Cadastro e Login:**
+   - Os usuários podem se cadastrar no sistema fornecendo informações como nome, CPF, data de nascimento, e-mail, número de telefone e senha.
+   - O sistema permite aos usuários fazer login usando CPF e senha.
 
-## ATUALIZÇÕES DO TOTEM DA SEGUNDA SPRINT - 21/05/2023
-Nesta sprint foram feitas poucas modificações ao usuário, e mais focada a quem for trabalhar futuramente neste programa, as modificações foram as seguintes:
-### Usuário
-- Mensagem dizendo ao usuário que após ele ter escaniado o QR CODE que sua transação foi aceita e informando a ele o resíduo que foi adquirido.
-- Na parte do descarte foi mantido o resumo do produto que está sendo descartado e o informe da disponibilidade do produto no ponto.
-- Mensagens de aviso caso digite alguma informação invalida em algum campo de input.
-### Desenvolvedor 
-- Código dividido em funções, facilitando a visualização e o entendimento dele.
-- Foi acrescentado também o tratamento de erros, para que o programa não pare caso o usuário digite alguma informação invalida em aglum input. 
+2. **Visualização de Produtos Disponíveis:**
+   - Os usuários podem visualizar uma lista de produtos eletrônicos disponíveis para descarte.
 
+3. **Descarte de Produtos:**
+   - Os usuários têm a opção de descartar produtos eletrônicos, como celulares, notebooks, televisores, periféricos e pilhas.
+   - Durante o descarte, os usuários podem fornecer informações sobre a marca, modelo, defeito e o valor que desejam receber pelo produto.
 
-## ATUALIZÇÕES DO TOTEM DA TERCEIRA SPRINT - 17/09/2023
-Sprint focada para a melhora do programa, nenhuma alteração para o usuário.
+4. **Geração de QR Code para Pagamento:**
+   - Após o descarte, o sistema gera um código QR que os usuários podem escanear para efetuar o pagamento via PIX.
 
-### Desenvolvedor
-- Adicionado Docstrings as funções para melhor entendimento do que se trata.
-- Implementação de dicionários contendo os produtos.
-- Atualização dos dicionários toda vez que o usuário adiciona o produto.
+5. **Área de Descarte Consciente:**
+   - Produtos que permanecem na plataforma por mais de 30 dias são levados para a área de tratamento adequado.
 
-## ATUALIZÇÕES DO TOTEM DA QUARTA SPRINT - 12/11/2023
-Nesta sprint a principal implementação foi um sistema de cadastro/login 
+## Desenvolvedor do Projeto
 
-### Usuário
-- Agora o usuário pode criar uma conta 
-- Após o usuário escolher comprar um produto é gerado o QRcode
-- Lista de produtos totalmente atualizada durante a rodagem do programa
-
-### Desenvolvedor
 [<img src="https://github.com/Torugo0.png" width="80">](https://github.com/Torugo0)  
 *Vitor Hugo*
+- **Contato:** [vitorh565.vh@gmail.com]
